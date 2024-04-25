@@ -6,11 +6,15 @@ import com.canada.edu.stocktrading.repository.UserEntityRepository;
 import com.canada.edu.stocktrading.service.dto.RegisteredUserDto;
 import com.canada.edu.stocktrading.service.dto.UserEntityDto;
 import com.canada.edu.stocktrading.service.utils.MapperUtils;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserEntityService {
@@ -42,5 +46,20 @@ public class UserEntityService {
         userEntityRepository.save(savedUsr);
         return MapperUtils.mapperObject(savedUsr, UserEntityDto.class);
     }
+
+    public boolean isUserIdValid(String userId){
+        Optional<UserEntity> found = userEntityRepository.findById(userId);
+        return found.isPresent();
+    }
+
+    public UserEntity findByUserId(String userId){
+        Optional<UserEntity> user = userEntityRepository.findById(userId);
+        if(user.isEmpty()){
+            throw new RuntimeException("Unable to find user with id "+ userId);
+        }
+        return user.get();
+    }
+
+
 
 }

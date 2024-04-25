@@ -2,13 +2,12 @@ package com.canada.edu.stocktrading.repo;
 
 import com.canada.edu.stocktrading.model.UserEntity;
 import com.canada.edu.stocktrading.repository.UserEntityRepository;
+import com.canada.edu.stocktrading.service.UserEntityService;
+import com.canada.edu.stocktrading.utils.EntityUtils;
+import org.apache.catalina.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -18,31 +17,23 @@ public class TestUserEntityRepository {
     private UserEntityRepository userEntityRepository;
 
     @Autowired
-    private UserEntityUtils utils;
+    private EntityUtils utils;
 
     @Test
     public void testFindByEmail(){
-        // generate random user in the database
         UserEntity randomUsr = utils.generateRandomUser();
 
         int noOfFound = userEntityRepository.findByEmail(randomUsr.getEmail()).size();
         assertThat(noOfFound).isEqualTo(1);
     }
 
-}
+    @Test
+    public void testFindByUserId(){
+        UserEntity randomUsr = utils.generateRandomUser();
 
-@Component
-class UserEntityUtils{
-    @Autowired
-    private UserEntityRepository userEntityRepository;
-
-    public  UserEntity generateRandomUser(){
-        int randomNum = generateRandomNumber(0,userEntityRepository.findAll().size());
-        List<UserEntity>users = userEntityRepository.findAll();
-        return users.get(randomNum);
+        UserEntity found = userEntityRepository.findById(randomUsr.getUserId()).get();
+        assertThat(found).isEqualTo(randomUsr);
     }
 
-    public static int generateRandomNumber(int min, int max){
-        return (int)(Math.random()*(max-min)+min);
-    }
 }
+
