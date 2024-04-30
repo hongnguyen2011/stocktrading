@@ -6,5 +6,5 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface CustomDailyRepository {
-    List<Daily>findDailiesBySymbolIds(Timestamp ts, List<Integer>symbolIds);
+    List<Daily> findDailiesBySymbolIds(Timestamp ts, List<Integer>symbolIds);
 }

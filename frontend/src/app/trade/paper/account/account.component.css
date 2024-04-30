@@ -1,5 +1,49 @@
 .wrapper{
   height: 40%;
-  background-color: orange;
-  width: 100%
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+}
+
+.title-wrapper{
+  background-color: pink;
+  height: 29%;
+  width: 100%;
+  padding: 50px 10px 5px 70px;
+  border-bottom: 1px solid red;
+}
+
+.title{
+  background-color: green;
+  width: 100%;
+  height: 100%;
+  padding-top: 5px;
+}
+
+p{
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.body-wrapper{
+  height: 71%;
+  width: 100%;
+  padding: 10px 10px 10px 70px;
+}
+.body{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: rgb(170,217,254);
+  background: linear-gradient(270deg, rgba(170,217,254,1) 0%, rgba(227,242,253,1) 50%, rgba(255,255,255,1) 100%);
+  padding: 15px 10px 15px 10px;
+}
+
+.text-wrapper{
+  width: 100%;
+  height: 100%;
+}
+
+.title-p{
+  color: gray
 }
