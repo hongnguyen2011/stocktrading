@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntityDto {
-    String userId;
-    String email;
+public class UserRegisteredDto extends UserDto{
+    String authenticationType;
+    String password;
 }
